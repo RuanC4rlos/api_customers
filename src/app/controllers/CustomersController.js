@@ -14,17 +14,17 @@ class CustomersController{
         const id = parseInt(req.param.id);
         const customer = customers.find(item => item.id === id);
         const status = customer ? 200 : 404;
-        
+
         return res.status(status).json(customer);
     }
 
     create(req, res){
         const {name, site} = req.body;
         const id = customers[customers.length - 1].id + 1;
-        
+
         const newCustomer = {id, name, site};
         customers.push(newCustomer);
-    
+
         return res.status(201).json(newCustomer);
 
     }
@@ -32,7 +32,7 @@ class CustomersController{
     update(req, res){
         const id = parseInt(req.params.id);
         const {name, site} = req.body;
-        
+
         const index = customers.findIndex(item => item.id === id);
         const status = index >= 0 ? 200 : 404;
 
@@ -45,16 +45,16 @@ class CustomersController{
 
     destroy(req, res){
         const id = parseInt(req.params.id);
-    
+
         const index = customers.findIndex(item => item.id === id);
         const status = index >= 0 ? 200 : 404;
-    
+
         if(index >= 0){
             customers.splice(index, 1);
         }
-    
+
         return res.status(status).json();
     }
 }
 
-module.exports = new CustomersController;
+export default new CustomersController;

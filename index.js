@@ -18,7 +18,7 @@ server.get("/customers/:id", (req, res) => {
     const id = parseInt(req.params.id)
     const customer = customers.find(item => item.id === id)
     const status = customer ? 200 : 404
-    
+
     return res.status(status).json(customer);
 });
 
@@ -26,7 +26,7 @@ server.get("/customers/:id", (req, res) => {
 server.post("/customers", (req, res) => {
     const {name, site} = req.body;
     const id = customers[customers.length - 1].id + 1;
-    
+
     const newCustomer = {id, name, site};
     customers.push(newCustomer);
 
@@ -36,7 +36,7 @@ server.post("/customers", (req, res) => {
 server.put("/customers/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const {name, site} = req.body;
-    
+
     const index = customers.findIndex(item => item.id === id);
     const status = index >= 0 ? 200 : 404;
 
@@ -50,7 +50,7 @@ server.put("/customers/:id", (req, res) => {
 
 server.delete("/customers/:id", (req, res) => {
     const id = parseInt(req.params.id);
-    
+
     const index = customers.findIndex(item => item.id === id);
     const status = index >= 0 ? 200 : 404;
 
@@ -62,4 +62,4 @@ server.delete("/customers/:id", (req, res) => {
 })
 
 
-server.listen(3000, () => console.log("Server is running on port 3000"));
+server.listen(3000);
